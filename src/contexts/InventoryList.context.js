@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import { createContext, useReducer } from "react";
 
 export const ACTION = {
   ADD_CAR_INVENTORY_LIST: "ADD_CAR_INVENTORY_LIST",
@@ -15,7 +15,7 @@ const inventoryListReducer = (state, action) => {
 
 export const InventoryListContext = createContext();
 
-export const InventoryListProvider = ({ children }) => {
+const InventoryListProvider = ({ children }) => {
   const [inventorylist, dispatch] = useReducer(inventoryListReducer, []);
 
   return (
@@ -24,3 +24,5 @@ export const InventoryListProvider = ({ children }) => {
     </InventoryListContext.Provider>
   );
 };
+
+export default InventoryListProvider;
