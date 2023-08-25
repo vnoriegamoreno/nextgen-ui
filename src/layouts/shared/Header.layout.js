@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Grid, Typography } from "@mui/material";
+import Avatar from "components/avatar/Avatar";
 
 const ContainerStyled = styled(Grid)`
   background-color: #fff;
@@ -19,15 +20,15 @@ const TypographyStyled = styled(Typography)`
   border-right: 2px solid #e8ebef;
   display: flex;
   flex-direction: row;
-  font-size: 0.9rem !important;
+  font-size: 0.8rem !important;
   font-weight: bold !important;
   height: 100%;
   justify-content: center;
-  width: 100%;
 
   @media (min-width: 400px) {
     justify-content: left;
     padding-left: 20px;
+    font-size: 0.9rem !important;
   }
 `;
 
@@ -40,7 +41,9 @@ const HeaderLayout = () => {
       <Grid item xs={8}>
         <TypographyStyled>NextGen Inventory Management</TypographyStyled>
       </Grid>
-      <Grid item xs={2}></Grid>
+      <Grid item xs={2}>
+        <Avatar />
+      </Grid>
     </ContainerStyled>
   );
 };
