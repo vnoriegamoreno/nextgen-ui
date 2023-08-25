@@ -1,5 +1,15 @@
 import { Button, Grid, Typography } from "@mui/material";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components/";
+
+export const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
+  font-size: 2rem;
+  margin-right: 2rem;
+  background: #ebecef;
+  padding: 10px;
+  border-radius: 5px;
+  color: ${({ color }) => color || "#fff"};
+`;
 
 export const StyledTypography = styled(Typography)`
   color: ${({ color }) => color || "inherit"};

@@ -12,3 +12,5 @@ export const formatMileage = (mileage) => {
 
   return mileageSplitted.join(".");
 };
+
+export const stringSanity = (str, defVal) => str || defVal || "";

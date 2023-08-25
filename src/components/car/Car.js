@@ -8,14 +8,17 @@ import {
   StyledPrice,
   StyledTypography,
   StyledWrapper,
+  StyledFontAwesomeIcon,
 } from "./StyledComponents";
 import { Grid } from "@mui/material";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import utils from "utils";
 
 const Car = (props) => {
   const [details, setDetails] = useState(false);
+  const [favorite, setFavorite] = useState(false);
 
-  const getPrice = ({ price }) => utils.formatPrice(price / 100);
+  const getPrice = ({ price }) => utils.formatPrice((price || 0) / 100);
   const toggleDetails = () => setDetails(!details);
 
   return (
@@ -23,7 +26,22 @@ const Car = (props) => {
       <StyledGrid container>
         <StyledInnerGrid container>
           <Grid item xs={12}>
-            <StyledTypography variant="body1">{`${props.year}, ${props.category}`}</StyledTypography>
+            <StyledTypography variant="body1">{`${utils.stringSanity(
+              props.year,
+              new Date(Date.now()).getFullYear()
+            )}, ${utils.stringSanity(
+              props.category,
+              "No Category"
+            )}`}</StyledTypography>
+          </Grid>
+        </StyledInnerGrid>
+        <StyledInnerGrid align="right" container>
+          <Grid item xs={12}>
+            <StyledFontAwesomeIcon
+              icon={faHeart}
+              color={favorite ? "#2277d0" : "#fff"}
+              onClick={() => setFavorite(!favorite)}
+            />
           </Grid>
         </StyledInnerGrid>
         <StyledInnerGrid align="center" container>
@@ -37,7 +55,10 @@ const Car = (props) => {
         </StyledInnerGrid>
         <StyledInnerGrid padding="5px 0px" align="center" container>
           <StyledTypography variant="h4" color="#424242">
-            {`${props.make} ${props.model} ${props.package}`}
+            {`${utils.stringSanity(props.make, "No Make")} ${utils.stringSanity(
+              props.model,
+              "No Model"
+            )} ${utils.stringSanity(props.package, "No Package")}`}
           </StyledTypography>
         </StyledInnerGrid>
         {details && (
@@ -47,7 +68,7 @@ const Car = (props) => {
                 {utils.constants.carTexts.color}
               </StyledTypography>
               <StyledTypography variant="body" margin="20px auto">
-                {props.color}
+                {utils.stringSanity(props.color, "No Color")}
               </StyledTypography>
             </StyledInnerGrid>
             <StyledInnerGrid item align="center" xs={4} border="true">
@@ -55,7 +76,7 @@ const Car = (props) => {
                 {utils.constants.carTexts.mileage}
               </StyledTypography>
               <StyledTypography variant="body" margin="20px auto">
-                {utils.formatMileage(props.mileage)}
+                {utils.formatMileage(props.mileage || 0)}
               </StyledTypography>
             </StyledInnerGrid>
             <StyledInnerGrid item align="center" xs={4}>
@@ -63,7 +84,7 @@ const Car = (props) => {
                 {utils.constants.carTexts.ID}
               </StyledTypography>
               <StyledTypography variant="body" margin="20px auto">
-                {props.serialId}
+                {utils.stringSanity(props.serialId, "#####")}
               </StyledTypography>
             </StyledInnerGrid>
           </StyledInnerGrid>

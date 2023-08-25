@@ -1,9 +1,10 @@
-import { formatPrice, formatMileage } from "./utils";
+import { formatPrice, formatMileage, stringSanity } from "./utils";
 import { carTexts } from "./constants";
 
 const utils = {
   formatPrice,
   formatMileage,
+  stringSanity,
   constants: { carTexts },
 };
 
