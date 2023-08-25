@@ -1,7 +1,8 @@
 import { useEffect, useContext } from "react";
 import { InventoryListContext, ACTIONS } from "contexts/InventoryList.context";
-import { Grid } from "@mui/material";
 import Car from "components/car/Car";
+import { Grid } from "@mui/material";
+import { StyledScrollLayout } from "./StyledComponents";
 
 const InventoryListLayout = () => {
   const { inventorylist, dispatch } = useContext(InventoryListContext);
@@ -19,14 +20,16 @@ const InventoryListLayout = () => {
   }, []);
 
   return (
-    <Grid container>
-      {inventorylist?.length &&
-        inventorylist.map((item) => (
-          <Grid key={item.serialId} item xs={12} md={6}>
-            <Car {...item} />
-          </Grid>
-        ))}
-    </Grid>
+    <StyledScrollLayout data-testid="scrollable-container">
+      <Grid container>
+        {inventorylist?.length &&
+          inventorylist.map((item) => (
+            <Grid key={item.serialId} item xs={12} md={6}>
+              <Car {...item} />
+            </Grid>
+          ))}
+      </Grid>
+    </StyledScrollLayout>
   );
 };
 
