@@ -1,38 +1,28 @@
-import HeaderLayout from "./shared/Header.layout";
-import InventoryListLayout from "./shared/InventoryList.layout";
-import SidebarLayout from "./shared/Sidebar.layout";
-
+import HeaderLayout from "./shared/header/Header.layout";
+import InventoryListLayout from "./shared/inventory-list/InventoryList.layout";
+import SidebarLayout from "./shared/sidebar/Sidebar.layout";
+import {
+  StyledContainer,
+  StyledLeftContainer,
+  StyledRightContainer,
+} from "./StyledComponents";
 import { Grid } from "@mui/material";
-import styled from "styled-components";
-
-const Container = styled.div`
-  background-color: #f4f5f7;
-  height: 100vh;
-`;
-
-const LeftContainer = styled(Grid)`
-  width: 50px;
-`;
-
-const RightContainer = styled(Grid)`
-  width: calc(100% - 50px);
-`;
 
 const InventoryManagerLayout = () => {
   return (
-    <Container>
+    <StyledContainer>
       <Grid container>
         <Grid item xs={12}>
           <HeaderLayout />
         </Grid>
-        <LeftContainer>
+        <StyledLeftContainer>
           <SidebarLayout />
-        </LeftContainer>
-        <RightContainer>
+        </StyledLeftContainer>
+        <StyledRightContainer>
           <InventoryListLayout />
-        </RightContainer>
+        </StyledRightContainer>
       </Grid>
-    </Container>
+    </StyledContainer>
   );
 };
 
