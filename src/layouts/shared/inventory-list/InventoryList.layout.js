@@ -1,8 +1,14 @@
-import { useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { InventoryListContext, ACTIONS } from "contexts/InventoryList.context";
 import Car from "components/car/Car";
 import { Grid } from "@mui/material";
-import { StyledScrollLayout } from "./StyledComponents";
+import {
+  StyledScrollLayout,
+  StyledButton,
+  StyledButtonWrapper,
+  StyledFontAwesomeIcon,
+} from "./StyledComponents";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const InventoryListLayout = () => {
   const { state, dispatch } = useContext(InventoryListContext);
@@ -23,6 +29,12 @@ const InventoryListLayout = () => {
   return (
     <StyledScrollLayout data-testid="scrollable-container">
       <Grid container>
+        <StyledButtonWrapper>
+          <StyledButton variant="contained">
+            <StyledFontAwesomeIcon icon={faPlus} />
+            Add vehicle
+          </StyledButton>
+        </StyledButtonWrapper>
         {inventorymanager &&
           inventorylist?.length &&
           inventorylist.map((item) => (

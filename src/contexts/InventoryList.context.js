@@ -52,7 +52,7 @@ const InventoryListProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
     inventorymanager: true,
     filters: {
-      isOpen: true,
+      isOpen: false,
     },
     inventorylist: [],
   });
