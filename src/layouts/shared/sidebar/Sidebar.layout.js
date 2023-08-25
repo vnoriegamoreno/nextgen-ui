@@ -30,7 +30,7 @@ const SidebarLayout = () => {
         </StyledWrapper>
         <StyledWrapper
           filters="true"
-          isactive={`${state.filters}`}
+          isactive={`${state.filters.isOpen}`}
           data-testid="nav-filters"
         >
           <StyledFontAwesomeIcon icon={faWrench} onClick={toggleFilters} />

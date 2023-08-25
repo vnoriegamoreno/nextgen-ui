@@ -24,7 +24,10 @@ const reducer = (state, action) => {
     case ACTIONS.TOGGLE_FILTERS:
       return {
         ...state,
-        filters: !state.filters,
+        filters: {
+          ...state.filters,
+          isOpen: !state.filters.isOpen,
+        },
       };
     default:
       return state;
@@ -36,7 +39,9 @@ export const InventoryListContext = createContext();
 const InventoryListProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
     inventorymanager: true,
-    filters: false,
+    filters: {
+      isOpen: true,
+    },
     inventorylist: [],
   });
 

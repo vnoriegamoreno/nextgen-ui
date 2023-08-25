@@ -4,7 +4,7 @@ import { Grid, Typography } from "@mui/material";
 export const StyledContainer = styled(Grid)`
   background-color: #fff;
   height: 13vh;
-  box-shadow: 4px 4px 7px silver;
+  box-shadow: 4px 4px 7px rgb(0 0 0 / 0.25);
 `;
 
 export const StyledTypography = styled(Typography)`

@@ -38,7 +38,7 @@ export const StyledButton = styled(Button)`
 `;
 
 export const StyledWrapper = styled.div`
-  margin: 30px;
+  margin: 30px 10px;
 `;
 
 export const StyledImage = styled.img`
