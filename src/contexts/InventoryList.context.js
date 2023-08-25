@@ -5,6 +5,7 @@ export const ACTIONS = {
   ADD_CAR_INVENTORY_LIST: "ADD_CAR_INVENTORY_LIST",
   TOGGLE_INVENTORY_MANAGER: "TOGGLE_INVENTORY_MANAGER",
   TOGGLE_FILTERS: "TOGGLE_FILTERS",
+  SEARCH_FILTERS: "SEARCH_FILTERS",
 };
 
 const reducer = (state, action) => {
@@ -20,6 +21,17 @@ const reducer = (state, action) => {
       return {
         ...state,
         inventorymanager: !state.inventorymanager,
+      };
+    case ACTIONS.SEARCH_FILTERS:
+      const newInventory = state.inventorylist.filter(
+        (car) => action.payload === car.serialId
+      );
+      if (!newInventory?.length) {
+        return state;
+      }
+      return {
+        ...state,
+        inventorylist: newInventory,
       };
     case ACTIONS.TOGGLE_FILTERS:
       return {

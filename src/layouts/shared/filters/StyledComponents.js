@@ -22,6 +22,14 @@ export const StyledButton = styled(Button)`
   font-size: 1.2rem !important;
 `;
 
+export const StyledClearButton = styled(Button)`
+  margin: 10px auto !important;
+  padding: 10px !important;
+  width: 80%;
+  font-size: 1.2rem !important;
+  background-color: #d00404 !important;
+`;
+
 export const StyledContainer = styled.div`
   background: #fff;
   border-right: 2px solid #e8ebef;
