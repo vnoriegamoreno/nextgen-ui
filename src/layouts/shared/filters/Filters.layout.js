@@ -9,6 +9,9 @@ import {
 } from "./StyledComponents";
 import { InventoryListContext, ACTIONS } from "contexts/InventoryList.context";
 
+/**
+ * TODO: filters should be handle it by an internal state in order to prevent infinit API calls
+ */
 const FiltersLayout = () => {
   const [serializedID, setSerializedID] = useState("");
 
