@@ -10,6 +10,14 @@ const Container = styled.div`
   height: 100vh;
 `;
 
+const LeftContainer = styled(Grid)`
+  width: 50px;
+`;
+
+const RightContainer = styled(Grid)`
+  width: calc(100% - 50px);
+`;
+
 const InventoryManagerLayout = () => {
   return (
     <Container>
@@ -17,12 +25,12 @@ const InventoryManagerLayout = () => {
         <Grid item xs={12}>
           <HeaderLayout />
         </Grid>
-        <Grid item xs={2}>
+        <LeftContainer>
           <SidebarLayout />
-        </Grid>
-        <Grid item xs={10}>
+        </LeftContainer>
+        <RightContainer>
           <InventoryListLayout />
-        </Grid>
+        </RightContainer>
       </Grid>
     </Container>
   );

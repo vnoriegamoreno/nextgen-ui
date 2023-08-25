@@ -1,13 +1,16 @@
 import { createContext, useReducer } from "react";
 
-export const ACTION = {
+export const ACTIONS = {
+  LOAD_INVENTORY_LIST: "LOAD_INVENTORY_LIST",
   ADD_CAR_INVENTORY_LIST: "ADD_CAR_INVENTORY_LIST",
 };
 
 const inventoryListReducer = (state, action) => {
-  switch(action.type) {
-    case ACTION.ADD_CAR_INVENTORY_LIST:
-      return state;
+  switch (action.type) {
+    case ACTIONS.LOAD_INVENTORY_LIST:
+      return action.payload;
+    case ACTIONS.ADD_CAR_INVENTORY_LIST:
+      return state.concat(action.payload);
     default:
       return state;
   }

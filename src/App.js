@@ -1,5 +1,5 @@
-import InventoryListProvider from 'contexts/InventoryList.context';
-import InventoryManagerLayout from 'layouts/InventoryManager.layout';
+import InventoryListProvider from "contexts/InventoryList.context";
+import InventoryManagerLayout from "layouts/InventoryManager.layout";
 
 function App() {
   return (
