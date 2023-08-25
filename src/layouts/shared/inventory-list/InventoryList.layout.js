@@ -5,7 +5,8 @@ import { Grid } from "@mui/material";
 import { StyledScrollLayout } from "./StyledComponents";
 
 const InventoryListLayout = () => {
-  const { inventorylist, dispatch } = useContext(InventoryListContext);
+  const { state, dispatch } = useContext(InventoryListContext);
+  const { inventorylist, inventorymanager } = state;
 
   useEffect(() => {
     fetch("http://localhost:8080/api/inventory-list/")
@@ -22,7 +23,8 @@ const InventoryListLayout = () => {
   return (
     <StyledScrollLayout data-testid="scrollable-container">
       <Grid container>
-        {inventorylist?.length &&
+        {inventorymanager &&
+          inventorylist?.length &&
           inventorylist.map((item) => (
             <Grid key={item.serialId} item xs={12} md={6}>
               <Car {...item} />
