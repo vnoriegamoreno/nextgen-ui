@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import { InventoryListContext, ACTIONS } from "contexts/InventoryList.context";
 import Car from "components/car/Car";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import {
   StyledScrollLayout,
   StyledButton,
@@ -38,13 +38,17 @@ const InventoryListLayout = () => {
             Add vehicle
           </StyledButton>
         </StyledButtonWrapper>
-        {inventorymanager.show &&
-          inventorylist?.length &&
+        {inventorymanager.show && inventorylist?.length > 0 ? (
           inventorylist.map((item, index) => (
             <Grid key={`${item.serialId}-${index}`} item xs={12} md={6}>
               <Car {...item} />
             </Grid>
-          ))}
+          ))
+        ) : (
+          <Grid item xs={12}>
+            <Typography variant="h6">No data found it</Typography>
+          </Grid>
+        )}
       </Grid>
     </StyledScrollLayout>
   );
