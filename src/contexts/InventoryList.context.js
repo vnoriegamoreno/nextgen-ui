@@ -14,17 +14,6 @@ const reducer = (state, action) => {
     case ACTIONS.LOAD_INVENTORY_LIST:
       return { ...state, inventorylist: action.payload };
     case ACTIONS.ADD_CAR_INVENTORY_LIST:
-      const removeSerialId = ({ serialId, ...rest }) => ({ ...rest });
-      fetch(
-        `http://localhost:8080/api/inventory-list/${action.payload.serialId}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(removeSerialId(action.payload)),
-        }
-      ).catch((err) => console.log(err));
       return {
         ...state,
         inventorylist: state.inventorylist.concat(action.payload),

@@ -54,23 +54,38 @@ const AddVehicleForm = () => {
     dispatch({ type: ACTIONS.TOGGLE_MODAL });
   };
 
+  const removeSerialId = ({ serialId, ...rest }) => ({ ...rest });
+
   const onSubmitHandler = () => {
     if (verifyFields()) {
-      // TODO: call endpoint with all props
-      dispatch({
-        type: ACTIONS.ADD_CAR_INVENTORY_LIST,
-        payload: {
-          make,
-          package: fieldPackage,
-          year,
-          mileage,
-          model,
-          color,
-          category,
-          price,
-          serialId: uuidv4().split("-")[0],
+      const newCar = {
+        make,
+        package: fieldPackage,
+        year,
+        mileage,
+        model,
+        color,
+        category,
+        price,
+        serialId: uuidv4().split("-")[0],
+      };
+      fetch(`http://localhost:8080/api/inventory-list/${newCar.serialId}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      });
+        body: JSON.stringify(removeSerialId(newCar)),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (result.success) {
+            dispatch({
+              type: ACTIONS.ADD_CAR_INVENTORY_LIST,
+              payload: newCar,
+            });
+          }
+        })
+        .catch((err) => console.log(err));
       onCloseHandler();
     } else {
       alert("Missing fields");
