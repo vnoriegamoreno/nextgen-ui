@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { InventoryListContext, ACTIONS } from "contexts/InventoryList.context";
 import { Grid } from "@mui/material";
 import {
   StyledRow,
@@ -7,8 +8,11 @@ import {
   StyledButton,
   StyledClearButton,
 } from "./StyledComponents";
+import { v4 as uuidv4 } from "uuid";
 
 const AddVehicleForm = () => {
+  const { dispatch } = useContext(InventoryListContext);
+
   const [make, setMake] = useState("");
   const [fieldPackage, setFieldPackage] = useState("");
   const [year, setYear] = useState("");
@@ -34,9 +38,40 @@ const AddVehicleForm = () => {
     return true;
   };
 
+  const clearForm = () => {
+    setMake("");
+    setFieldPackage("");
+    setYear("");
+    setMileage("");
+    setModel("");
+    setColor("");
+    setCategory("");
+    setPrice("");
+  };
+
+  const onCloseHandler = () => {
+    clearForm();
+    dispatch({ type: ACTIONS.TOGGLE_MODAL });
+  };
+
   const onSubmitHandler = () => {
     if (verifyFields()) {
       // TODO: call endpoint with all props
+      dispatch({
+        type: ACTIONS.ADD_CAR_INVENTORY_LIST,
+        payload: {
+          make,
+          package: fieldPackage,
+          year,
+          mileage,
+          model,
+          color,
+          category,
+          price,
+          serialId: uuidv4().split("-")[0],
+        },
+      });
+      onCloseHandler();
     } else {
       alert("Missing fields");
     }
@@ -111,7 +146,9 @@ const AddVehicleForm = () => {
           marginbottom="20px"
           label="Price"
         />
-        <StyledClearButton variant="contained">Cancel</StyledClearButton>
+        <StyledClearButton variant="contained" onClick={onCloseHandler}>
+          Close
+        </StyledClearButton>
       </StyledRow>
     </Grid>
   );

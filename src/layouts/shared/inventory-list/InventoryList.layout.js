@@ -30,15 +30,18 @@ const InventoryListLayout = () => {
     <StyledScrollLayout data-testid="scrollable-container">
       <Grid container>
         <StyledButtonWrapper>
-          <StyledButton variant="contained">
+          <StyledButton
+            variant="contained"
+            onClick={() => dispatch({ type: ACTIONS.TOGGLE_MODAL })}
+          >
             <StyledFontAwesomeIcon icon={faPlus} />
             Add vehicle
           </StyledButton>
         </StyledButtonWrapper>
         {inventorymanager.show &&
           inventorylist?.length &&
-          inventorylist.map((item) => (
-            <Grid key={item.serialId} item xs={12} md={6}>
+          inventorylist.map((item, index) => (
+            <Grid key={`${item.serialId}-${index}`} item xs={12} md={6}>
               <Car {...item} />
             </Grid>
           ))}

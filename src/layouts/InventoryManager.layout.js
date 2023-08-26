@@ -34,7 +34,7 @@ const InventoryManagerLayout = () => {
         </StyledRightContainer>
       </Grid>
       {state.filters.isOpen && <FiltersLayout />}
-      <ModalLayout />
+      {state.inventorymanager.modal && <ModalLayout />}
     </StyledContainer>
   );
 };

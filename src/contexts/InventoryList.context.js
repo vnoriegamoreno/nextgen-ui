@@ -5,6 +5,7 @@ export const ACTIONS = {
   ADD_CAR_INVENTORY_LIST: "ADD_CAR_INVENTORY_LIST",
   TOGGLE_INVENTORY_MANAGER: "TOGGLE_INVENTORY_MANAGER",
   TOGGLE_FILTERS: "TOGGLE_FILTERS",
+  TOGGLE_MODAL: "TOGGLE_MODAL",
   SEARCH_FILTERS: "SEARCH_FILTERS",
 };
 
@@ -13,6 +14,17 @@ const reducer = (state, action) => {
     case ACTIONS.LOAD_INVENTORY_LIST:
       return { ...state, inventorylist: action.payload };
     case ACTIONS.ADD_CAR_INVENTORY_LIST:
+      const removeSerialId = ({ serialId, ...rest }) => ({ ...rest });
+      fetch(
+        `http://localhost:8080/api/inventory-list/${action.payload.serialId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(removeSerialId(action.payload)),
+        }
+      ).catch((err) => console.log(err));
       return {
         ...state,
         inventorylist: state.inventorylist.concat(action.payload),
@@ -44,6 +56,14 @@ const reducer = (state, action) => {
           isOpen: !state.filters.isOpen,
         },
       };
+    case ACTIONS.TOGGLE_MODAL:
+      return {
+        ...state,
+        inventorymanager: {
+          ...state.inventorymanager,
+          modal: !state.inventorymanager.modal,
+        },
+      };
     default:
       return state;
   }
@@ -55,6 +75,7 @@ const InventoryListProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, {
     inventorymanager: {
       show: true,
+      modal: false,
     },
     filters: {
       isOpen: false,

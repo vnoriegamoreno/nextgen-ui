@@ -18,6 +18,9 @@ export const StyledTypography = styled(Typography)`
   font-weight: bold !important;
   letter-spacing: ${({ letterSpacing }) =>
     letterSpacing || "inherit"} !important;
+  @media (max-width: 390px) {
+    font-size: 0.85rem !important;
+  }
 `;
 
 export const StyledGrid = styled(Grid)`
