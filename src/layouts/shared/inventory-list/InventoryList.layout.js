@@ -24,7 +24,7 @@ const InventoryListLayout = () => {
         })
       )
       .catch((err) => console.log(err));
-  }, []);
+  }, [dispatch]);
 
   return (
     <StyledScrollLayout data-testid="scrollable-container">

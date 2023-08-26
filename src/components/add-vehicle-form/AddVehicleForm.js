@@ -66,7 +66,7 @@ const AddVehicleForm = () => {
         model,
         color,
         category,
-        price,
+        price: price * 100,
         serialId: uuidv4().split("-")[0],
       };
       fetch(`http://localhost:8080/api/inventory-list/${newCar.serialId}`, {
