@@ -20,12 +20,12 @@ const SidebarLayout = () => {
     <ContainerStyled>
       <StyledNav>
         <StyledWrapper
-          isactive={`${state.inventorymanager}`}
+          isactive={`${state.inventorymanager.show}`}
           data-testid="nav-inventory-manager"
         >
           <StyledFontAwesomeIcon
             icon={faCar}
-            onClick={toggleInventoryManager}
+            onClick={toggleInventoryManager.show}
           />
         </StyledWrapper>
         <StyledWrapper

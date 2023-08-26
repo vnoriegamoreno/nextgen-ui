@@ -35,7 +35,7 @@ const InventoryListLayout = () => {
             Add vehicle
           </StyledButton>
         </StyledButtonWrapper>
-        {inventorymanager &&
+        {inventorymanager.show &&
           inventorylist?.length &&
           inventorylist.map((item) => (
             <Grid key={item.serialId} item xs={12} md={6}>

@@ -3,8 +3,12 @@ import SidebarLayout from "layouts/shared/sidebar/Sidebar.layout";
 import InventoryListProvider from "contexts/InventoryList.context";
 
 const mockContext = {
-  inventorymanager: true,
-  filters: false,
+  inventorymanager: {
+    show: true,
+  },
+  filters: {
+    isOpen: false,
+  },
 };
 
 describe("SidebarLayout", () => {

@@ -7,14 +7,14 @@ export const StyledTypography = styled(Typography)`
 `;
 
 export const StyledRow = styled(Grid)`
-  margin-bottom: ${({ marginBottom }) =>
-    marginBottom ? marginBottom : "10px"} !important;
+  margin-bottom: ${({ marginbottom }) =>
+    marginbottom ? marginbottom : "10px"} !important;
 `;
 
 export const StyledTextField = styled(TextField)`
   margin: 10px auto !important;
-  margin-bottom: ${({ marginBottom }) =>
-    marginBottom ? marginBottom : "10px"} !important;
+  margin-bottom: ${({ marginbottom }) =>
+    marginbottom ? marginbottom : "10px"} !important;
   background-color: #f4f5f7;
   width: 80%;
   border-radius: 5px;
