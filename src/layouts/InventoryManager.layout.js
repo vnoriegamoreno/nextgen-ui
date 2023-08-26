@@ -3,6 +3,7 @@ import HeaderLayout from "./shared/header/Header.layout";
 import InventoryListLayout from "./shared/inventory-list/InventoryList.layout";
 import SidebarLayout from "./shared/sidebar/Sidebar.layout";
 import FiltersLayout from "./shared/filters/Filters.layout";
+import ModalLayout from "./shared/modal/ModalLayout";
 import {
   StyledContainer,
   StyledTopContainer,
@@ -33,6 +34,7 @@ const InventoryManagerLayout = () => {
         </StyledRightContainer>
       </Grid>
       {state.filters.isOpen && <FiltersLayout />}
+      <ModalLayout />
     </StyledContainer>
   );
 };
