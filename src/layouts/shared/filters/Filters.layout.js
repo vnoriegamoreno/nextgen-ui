@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Grid } from "@mui/material";
 import {
   StyledContainer,
@@ -9,17 +9,18 @@ import {
 } from "./StyledComponents";
 import { InventoryListContext, ACTIONS } from "contexts/InventoryList.context";
 
-/**
- * TODO: filters should be handle it by an internal state in order to prevent infinit API calls
- */
 const FiltersLayout = () => {
+  const { state, dispatch } = useContext(InventoryListContext);
   const [serializedID, setSerializedID] = useState("");
 
-  const { dispatch } = useContext(InventoryListContext);
+  useEffect(() => {
+    if (state.filters.serialId) {
+      setSerializedID(state.filters.serialId);
+    }
+  }, [state.filters.isOpen]);
 
   const searchHandler = () => {
     dispatch({ type: ACTIONS.SEARCH_FILTERS, payload: serializedID });
-    dispatch({ type: ACTIONS.TOGGLE_FILTERS });
   };
 
   const clearSearchHandler = () => {
@@ -33,6 +34,7 @@ const FiltersLayout = () => {
       )
       .catch((err) => console.log(err));
     setSerializedID("");
+    dispatch({ type: ACTIONS.CLEAR_FILTERS });
   };
 
   return (

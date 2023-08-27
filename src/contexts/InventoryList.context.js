@@ -7,6 +7,7 @@ export const ACTIONS = {
   TOGGLE_FILTERS: "TOGGLE_FILTERS",
   TOGGLE_MODAL: "TOGGLE_MODAL",
   SEARCH_FILTERS: "SEARCH_FILTERS",
+  CLEAR_FILTERS: "CLEAR_FILTERS",
 };
 
 const reducer = (state, action) => {
@@ -31,11 +32,29 @@ const reducer = (state, action) => {
         (car) => action.payload === car.serialId
       );
       if (!newInventory?.length) {
-        return state;
+        return {
+          ...state,
+          filters: {
+            ...state.filters,
+            serialId: action.payload,
+          },
+        };
       }
       return {
         ...state,
+        filters: {
+          ...state.filters,
+          serialId: action.payload,
+        },
         inventorylist: newInventory,
+      };
+    case ACTIONS.CLEAR_FILTERS:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          serialId: "",
+        },
       };
     case ACTIONS.TOGGLE_FILTERS:
       return {
@@ -67,6 +86,7 @@ const InventoryListProvider = ({ children }) => {
       modal: false,
     },
     filters: {
+      serialId: null,
       isOpen: false,
     },
     inventorylist: [],
